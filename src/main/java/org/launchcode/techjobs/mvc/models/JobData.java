@@ -23,10 +23,10 @@ public class JobData {
     private static boolean isDataLoaded = false;
 
     private static ArrayList<Job> allJobs;
-    private static ArrayList<Employer> allEmployers = new ArrayList<>();
-    private static ArrayList<Location> allLocations = new ArrayList<>();
-    private static ArrayList<PositionType> allPositionTypes = new ArrayList<>();
-    private static ArrayList<CoreCompetency> allCoreCompetency = new ArrayList<>();
+    private static final ArrayList<Employer> allEmployers = new ArrayList<>();
+    private static final ArrayList<Location> allLocations = new ArrayList<>();
+    private static final ArrayList<PositionType> allPositionTypes = new ArrayList<>();
+    private static final ArrayList<CoreCompetency> allCoreCompetency = new ArrayList<>();
 
     /**
      * Fetch list of all job objects from loaded data,
@@ -204,6 +204,12 @@ public class JobData {
             System.out.println("Failed to load job data");
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<Job> getAll() {
+        loadData();
+        allJobs.sort(new NameSorter());
+        return allJobs;
     }
 
     public static ArrayList<Employer> getAllEmployers() {
